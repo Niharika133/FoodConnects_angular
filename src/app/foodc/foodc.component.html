@@ -1,0 +1,68 @@
+<div class ="container"   style="font-size: 17px">
+    <h2>FOOD CATEGORY</h2><br>
+    <table class="table table-stripped table-bordered table-hover" style="font-size:17px" >
+  <thead>
+    <tr class = "bg-primary" height="40px" text-align= "center" >
+      <th>FCid</th>
+      <th>FCname</th>
+      <th>Action</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+    <tbody>
+    <tr *ngFor="let fc of Foodcategory" >
+        <td>{{fc.fcid}}</td>
+      <td>{{fc.fcname | uppercase}}</td>
+      <td><button class="btn btn-success" (click)="openModal()"  (click)="updateFoodC(fc)">Update</button></td>
+      <td><button class = "btn btn-danger" (click)="deletefoodC(fc.fcid)" >Delete</button></td>
+    </tr>
+  </tbody>
+  </table>
+  <div class="btn">
+  <button class="btn btn-primary" (click)="openForm()">ADD</button>
+</div>
+  
+  <div class="container2">
+   
+    <form #addform = "ngForm" (ngSubmit) = "addFoodC()" *ngIf="showForm">
+      <div *ngIf="fcid.errors?.['required'] && fcid.touched">Please enter food id </div>
+      <!-- <div *ngIf="fcid.errors?.['minlength'] && fcid.touched">Please enter atleast 2 digits</div> -->
+      FCId:<input type="text" name="fcid" ngModel #fcid="ngModel" [(ngModel)]="fc.fcid"><br><br> 
+  
+      <div *ngIf="fcname.errors?.['required'] && fcname.touched">Please enter product name</div>
+      <!-- <div *ngIf="fcname.errors?.['minlength'] && fcname.touched">Please enter atleast 5 characters</div> -->
+      FCName:<input type = "text" name ="fcname" #fcname="ngModel" ngModel [(ngModel)]="fc.fcname" required><br><br>
+      <button class = "btn btn-primary" >ADD FOODC</button>
+    </form>
+  </div>
+      </div>
+  
+      <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
+        <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                    <div class="modal-header">
+                          <h4 class="modal-title">Update</h4>
+                          <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+                        </div>
+               <div class="modal-body">
+                 <form #addform = "ngForm" (ngSubmit) = "updateFC()">
+  
+           
+                   <div *ngIf="fcid.errors?.['required'] && fcid.touched">Please enter product Category ID</div>
+                   <div *ngIf="fcid.errors?.['minlength'] && fcid.touched">Please enter atleast 1 digit</div>
+                   Fcid:<input type = "number" name = "fcid" #fcid="ngModel" ngModel [(ngModel)]="foodCUpdate.fcid" required minlength="1" maxlength="5"><br><br>
+                  
+                   <div *ngIf="fcname.errors?.['required'] && fcname.touched">Please enter product name</div>
+                   <div *ngIf="fcname.errors?.['minlength'] && fcname.touched">Please enter atleast 5 characters</div>
+                   FCName:<input type = "text" name ="fcname" #fcname="ngModel" ngModel [(ngModel)]="foodCUpdate.fcname" required minlength="5" maxlength="25"><br><br>
+                   <button class="btn btn-primary">Submit</button>
+                 </form>
+               </div>
+               <div class="modal-footer">
+                     <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+                   </div>
+      </div>
+       </div>
+  </div>
+  
+  

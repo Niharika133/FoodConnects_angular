@@ -1,0 +1,17 @@
+.container button{
+    
+        border: none;
+        color:black;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 20px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 20px;
+        width: 200px;
+	height: 125px;
+
+      
+}

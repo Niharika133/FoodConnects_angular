@@ -1,0 +1,58 @@
+    <div class="container">
+    <table class="table table-stripped table-bordered table-hover">
+        <thead>
+            <tr class = "bg-primary" height="40px" text-align= "center">
+              <th>FoodItems</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Action1</th>
+                <th>Action2</th> 
+            </tr>
+          </thead>
+          <tbody>
+    <tr *ngFor="let f of cartitems"  class="table-row">
+
+         <td><img class = "img-thumbnail" src="{{f.fimg}}" alt="{{f.fname}}"></td> 
+
+    
+        <td><h3>{{f.fname}}</h3></td>
+        <td><h3>{{f.fprice| currency:"INR"}}</h3></td>
+         <td><button type="submit" class= "btn btn-danger" (click)="deleteorder(f)">Remove</button></td>  
+        <!-- <div *ngFor="let o of ord">
+          <div *ngIf="f.fid==o.fid"> -->
+         <td >
+           <button type="button" (click)="increaseQuantity(f)" class="btn btn-white btn-minuse"><h3>+</h3></button>
+           <span *ngIf="quantityUnchanged()">{{getQuantity(f)}}</span>
+                <span *ngIf="!quantityUnchanged()">{{getQuantity(f)}}</span>
+           <!-- <input id="ord" class="qty" type="number" value="1" min="1" size="1"> --> 
+         <button type="button" (click)="reduceQuantity(f)" class="btn btn-white btn-minuse"><h3>-</h3></button> 
+        
+      </td> 
+
+       <!-- </div>
+      </div> -->
+        <!-- <td>
+          <div class="cartButtons">
+              <button type="button" (click)="reduceQuantity(f)" class="btn btn-white btn-minuse"><h4>-</h4></button>
+              <span>{{getQuantity(f)}}</span>
+              <button type="button" (click)="increaseQuantity(f.fid)" class="btn btn-red btn-plus"><h4>+</h4></button>
+          </div>
+      </td> --> 
+      </tr>
+         
+          
+    
+ 
+   
+    <td style="font-weight: bold">
+        <h3>Total Quantity:{{totalQuantity}}</h3>
+        <h3>Shipping: FREE</h3>
+        <h3>Total Price :{{totalPrice | currency :'INR'}}</h3>
+    </td>   
+        
+    </tbody>   
+</table>
+<button class = "btn btn-success"type="submit" (click)="checkout()">Check Out</button>
+
+</div>
+

@@ -1,0 +1,19 @@
+<form class="d-flex" #searchForm = "ngForm" (ngSubmit) = "search()" style="margin-left: 900px;">
+  <label style="color: white;">Search Product</label>
+  <input type="text" size="50"  name = "searchfor" [(ngModel)] = "searchfor"   placeholder="Enter product name ">
+  <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+</form>
+<br><br>
+<div class="flex-container" style="margin-left: 10px;">
+    <div class="flex-box" *ngFor="let f of Food|filter:searchfor" style="margin-bottom: 300px;">
+ 
+  <img class = "img-thumbnail" src="{{f.fimg}}" width="300px" height="100px" alt="product" /> 
+
+      <!-- <img  ng-src="{{f.fimg}}"alt="{{f.fname}}.jpg" style="height: 100px; width: 100px" /> -->
+      <!-- <img ng-src="/src/assets/images/virat.jpg" width="100" height="100" /> -->
+      <h1  class="text" style="margin-left: 50px;">{{f.fname}}</h1>
+      <p class="text" style="font-size: 22px;margin-left: 120px">{{f.fprice| currency:"INR"}}</p>
+      <p class="text" style="margin-left: 80px">Description:{{f.fdesc}}</p>
+      <button style="padding: 12px;color: white;background-color: #000;cursor: pointer;width: 300px;font-size: 18px;;" (click)="addTOCart(f.fid)"(click)="showToastr()">Add To Cart</button>
+    </div>
+</div>

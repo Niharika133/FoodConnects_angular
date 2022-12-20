@@ -1,0 +1,26 @@
+<div class ="container">
+    <h2>USER DETAILS</h2><br>
+  <table class="table table-stripped table-bordered table-hover"  style="font-size:17px">
+    <thead>
+    <tr class = "bg-primary" height="40px" text-align= "center">
+      <th>Uid</th>
+      <th>Uname</th>
+      <th>Uemail</th>
+      <th>Uaddress</th>
+      <th>Upassword</th>
+      <th>Uphone</th>
+    </tr>
+  </thead>
+    <tbody>
+    <tr *ngFor="let u of User">
+        <td>{{u.uid}}</td>
+      <td>{{u.uname | uppercase}}</td>
+      <td>{{u.uemail}}</td>
+      <td>{{u.uaddress}}</td>
+      <td>{{u.upass}}</td>
+      <td>{{u.uphone }}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br>

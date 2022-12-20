@@ -1,0 +1,197 @@
+<!-- <div class="container">
+
+    <form #regForm ="ngForm" (ngSubmit)="payment()" novalidate>
+
+        <div class="row">
+
+            <div class="col">
+
+                <h3 class="title">billing address</h3>
+
+                <div class="inputBox">
+                    <span>full name :</span>
+                    <div *ngIf="name.errors && (name.invalid && name.touched)">
+                        <small class="text-danger" >enter the full Name</small></div>
+                        <div *ngIf ="name.errors?.['minlength'] && name.touched">pls enter atleast 5 character</div>
+                    <input type ="text"   ngModel  name ="name" #name="ngModel" required minlength="5" maxlength="20"><br>
+               
+                </div>
+                <div class="inputBox">
+                    <div *ngIf ="email.errors?.['minlength'] && email.touched">pls enter atleast 10 characters</div>
+                    Email <br><input type ="email" pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$" ngModel name ="email"#email="ngModel" placeholder="abc@gmail.com" required ><br>
+                    <div *ngIf="email.errors && (email.invalid && email.touched)">
+                     <small class="text-danger" >enter the valid email id</small></div>
+                </div>
+                <div class="inputBox">
+                
+                    <div *ngIf ="address.errors?.['minlength'] && address.touched">pls enter 5 characters</div>
+                   Address<br>  <input type ="address" ngModel  name ="address"#address="ngModel" required minlength="5" maxlength="20">
+                   <div *ngIf="address.errors && (address.invalid && address.touched)">
+                    <small class="text-danger" >enter the  Address</small></div>
+                </div>
+                <div class="inputBox">
+                    <span>city :</span>
+                    
+                    <input type ="city" ngModel  name ="city"#city="ngModel" required >
+                    <div *ngIf="city.errors && (city.invalid && city.touched)">
+                        <small class="text-danger" >enter the  city</small></div>
+                    </div> -->
+              
+<google-pay-button 
+  environment="TEST"
+  buttonType="buy"
+  buttonColor="black"
+  [paymentRequest]="{
+    apiVersion: 2,
+    apiVersionMinor: 0,
+    allowedPaymentMethods: [
+      {
+        type: 'CARD',
+        parameters: {
+          allowedAuthMethods: ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
+          allowedCardNetworks: ['AMEX', 'VISA', 'MASTERCARD']
+        },
+        tokenizationSpecification: {
+          type: 'PAYMENT_GATEWAY',
+          parameters: {
+            gateway: 'example',
+            gatewayMerchantId: 'exampleGatewayMerchantId'
+          }
+        }
+      }
+    ],   merchantInfo: {
+      merchantId: '12345678901234567890',
+      merchantName: 'Demo Merchant'
+    },
+    transactionInfo: {
+      totalPriceStatus: 'FINAL',
+      totalPriceLabel: 'Total',
+      totalPrice: '100.00',
+      currencyCode: 'USD',
+      countryCode: 'US'
+    }
+  }"
+  (loadpaymentdata)="onLoadPaymentData($event)" 
+  ></google-pay-button>
+
+
+
+<!-- <div class="container">
+
+    <form  #payForm="ngForm" (ngSubmit)=payment(payForm.value) novalidate>
+
+        <div class="row">
+
+            <div class="col">
+
+                <h3 class="title">billing address</h3>
+
+                <div class="inputBox">
+                    <span>full name :</span>
+                    <div *ngIf="name.errors && (name.invalid && name.touched)">
+                        <small class="text-danger" >enter the full Name</small></div>
+                        <div *ngIf ="name.errors?.['minlength'] && name.touched">pls enter atleast 5 character</div>
+                    <input type ="text"   ngModel  name ="name" #name="ngModel" required minlength="5" maxlength="20"><br>
+               
+                </div>
+                <div class="inputBox">
+                    <div *ngIf ="email.errors?.['minlength'] && email.touched">pls enter atleast 10 characters</div>
+                    Email <br><input type ="email" pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$" ngModel name ="email"#email="ngModel" placeholder="abc@gmail.com" required ><br>
+                    <div *ngIf="email.errors && (email.invalid && email.touched)">
+                     <small class="text-danger" >enter the valid email id</small></div>
+                </div>
+                <div class="inputBox">
+                
+                    <div *ngIf ="address.errors?.['minlength'] && address.touched">pls enter 5 characters</div>
+                   Address<br>  <input type ="address" ngModel  name ="address"#address="ngModel" required minlength="5" maxlength="20">
+                   <div *ngIf="address.errors && (address.invalid && address.touched)">
+                    <small class="text-danger" >enter the  Address</small></div>
+                </div>
+                <div class="inputBox">
+                    <span>city :</span>
+                    
+                    <input type ="city" ngModel  name ="city"#city="ngModel" required >
+                    <div *ngIf="city.errors && (city.invalid && city.touched)">
+                        <small class="text-danger" >enter the  city</small></div>
+                </div>
+
+                <div class="flex">
+                    <div class="inputBox">
+                        <span>state :</span>
+                       
+                        <input type ="state" ngModel  name ="state" #state="ngModel" required >
+                        <div *ngIf="state.errors && (state.invalid && state.touched)">
+                            <small class="text-danger" >enter the  state</small></div>
+                    </div>
+                    <div class="inputBox">
+                        <span>pin code :</span>
+                      
+                        <input type ="pincode" ngModel  name ="pincode" #pincode="ngModel" required >
+                        <div *ngIf="pincode.errors && (pincode.invalid && pincode.touched)">
+                            <small class="text-danger" >enter the pincode</small></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col">
+
+                <h3 class="title">payment</h3>
+
+                <div class="inputBox">
+                    <span>cards accepted :</span>
+                    <img src="./assets/images/CardsAccepted.jpeg" alt="not available">
+                </div>
+                <div class="inputBox">
+                    <span>name on card :</span>
+                    
+                    <input type ="card" ngModel  name ="card" #card="ngModel" required >
+                    <div *ngIf="card.errors && (card.invalid && card.touched)">
+                        <small class="text-danger" >enter the card </small></div>
+                </div>
+                <div class="inputBox">
+                    <span>credit card number :</span>
+                  
+                    <input type ="credit" ngModel  name ="credit" #credit="ngModel" required >
+                    <div *ngIf="credit.errors && (credit.invalid && credit.touched)">
+                        <small class="text-danger" >enter the credit car no</small></div>
+                </div>
+                <div class="inputBox">
+                    <span>exp month :</span>
+                    <div *ngIf="exp.errors && (exp.invalid && exp.touched)">
+                        <small class="text-danger" >enter the exp month</small></div>
+                    <input type ="exp" ngModel  name ="exp" #exp="ngModel" required >
+                </div>
+
+                <div class="flex">
+                    <div class="inputBox">
+                        <span>exp year :</span>
+                        <div *ngIf="year.errors && (year.invalid && year.touched)">
+                            <small class="text-danger" >enter the exp year</small></div>
+                        <input type ="year" ngModel  name ="year" #year="ngModel" required >
+                    </div>
+                    <div class="inputBox">
+                        <span>CVV :</span>
+                        <div *ngIf="cvv.errors && (cvv.invalid && cvv.touched)">
+                            <small class="text-danger" >enter the CVV</small></div>
+                        <input type ="number" ngModel  name ="cvv" #cvv="ngModel" required >
+                    </div>
+                </div>
+
+            </div>
+    
+        </div>
+   
+
+        <button  [disabled]="payForm.invalid" type="submit" value="proceed to checkout" class="submit-btn" (click)="payment1()">Proceed to checkout</button> 
+
+        </form>
+
+</div>     -->
+    
+
+
+
+
+
+

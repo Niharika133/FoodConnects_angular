@@ -1,0 +1,113 @@
+<div class ="container">
+  <h2>FOOD DETAILS</h2><br>
+<table class="table table-stripped table-bordered table-hover"  style="font-size:17px">
+  <thead>
+    <tr class = "bg-primary" height="40px" text-align= "center">
+      <th>Fid</th>
+      <th>Fname</th>
+      <th>Fprice</th>
+      <th>Fdesc</th>
+      <th>Fcid</th>
+      <th>Fimg</th>
+      <th>Action</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+    <tbody>
+    <tr *ngFor="let f of Food">
+        <td>{{f.fid}}</td>
+      <td>{{f.fname | uppercase}}</td>
+      <td>{{f.fprice|currency:"INR"}}</td>
+      <td>{{f.fdesc}}</td>
+      <td>{{f.fcid}}</td>
+      <td>{{f.fimg }}</td>
+      <td><button class="btn btn-success btn-md mb-3" (click)="openModal()"  (click)="updateFood(f)">Update</button></td>
+        <td><button class = "btn btn-danger" (click)="deletefood(f.fid)" >Delete</button></td>
+    </tr>
+  </tbody>
+</table>
+<div class="btn">
+<button class="btn btn-primary"(click)="openForm()">ADD</button>
+</div>
+
+
+     <div class="container1" style="font-size: 17px">
+    <form #addform = "ngForm" (ngSubmit) = "addfood()"*ngIf="showForm">
+<!-- 
+      <div *ngIf="fid.errors?.['required'] && fid.touched">Please enter food id </div>
+      <div *ngIf="fid.errors?.['minlength'] && fid.touched">Please enter atleast 2 digits</div>
+      FId:<input type="text" name="fid" ngModel #fid="ngModel" [(ngModel)]="food.fid" required minlength="1" maxlength="5"><br><br> -->
+  
+      <div *ngIf="fname.errors?.['required'] && fname.touched">Please enter product name</div>
+      <!-- <div *ngIf="fname.errors?.['minlength'] && fname.touched">Please enter atleast 5 characters</div> -->
+      FName:<input type = "text" name ="fname" #fname="ngModel" ngModel [(ngModel)]="food.fname"required><br><br>
+
+      <div *ngIf="fprice.errors?.['required'] && fprice.touched">Please enter product price</div>
+      <!-- <div *ngIf="fprice.errors?.['minlength'] && fprice.touched">Please enter atleast 4 digits</div> -->
+      FPrice:<input type = "number" name = "fprice" #fprice="ngModel" ngModel [(ngModel)]="food.fprice" required ><br><br>
+    
+      <div *ngIf="fdesc.errors?.['required'] && fdesc.touched">Please enter product Description</div>
+      <!-- <div *ngIf="fdesc.errors?.['minlength'] && fdesc.touched">Please enter atleast 5 characters</div> -->
+      Fdesc:<input type = "text" name = "fdesc" #fdesc="ngModel" ngModel [(ngModel)]="food.fdesc" required ><br><br>
+    
+      <div *ngIf="fcid.errors?.['required'] && fcid.touched">Please enter product Category ID</div>
+      <!-- <div *ngIf="fcid.errors?.['minlength'] && fcid.touched">Please enter atleast 1 digit</div> -->
+      Fcid:<input type = "number" name = "fcid" #fcid="ngModel" ngModel [(ngModel)]="food.fcid" required ><br><br>
+      Fimg:<input type = "text"  name = "fimg" #fimg="ngModel" ngModel [(ngModel)]="food.fimg" required><br>
+      <button class = "btn btn-primary">ADD FOOD</button>
+    </form>
+  </div>
+</div> 
+
+
+
+  <!-- <button type="button" class="btn btn-info btn-lg" (click)="openModal()">click to open</button> -->
+    <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
+         <div class="modal-dialog" role="document">
+               <div class="modal-content">
+                     <div class="modal-header">
+                           <h4 class="modal-title">Update</h4>
+                           <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+                         </div>
+                <div class="modal-body">
+                  <form #addform = "ngForm" (ngSubmit) = "updateF()">
+
+                    <div *ngIf="fid.errors?.['required'] && fid.touched">Please enter food id </div>
+                    <div *ngIf="fid.errors?.['minlength'] && fid.touched">Please enter atleast 2 digits</div>
+                    FId:<input type="text" name="fid" ngModel #fid="ngModel" [(ngModel)]="foodUpdate.fid"><br><br>
+                
+                    <div *ngIf="fname.errors?.['required'] && fname.touched">Please enter product name</div>
+                    <div *ngIf="fname.errors?.['minlength'] && fname.touched">Please enter atleast 5 characters</div>
+                    FName:<input type = "text" name ="fname" #fname="ngModel" ngModel [(ngModel)]="foodUpdate.fname" required minlength="5" maxlength="25"><br><br>
+              
+                    <div *ngIf="fprice.errors?.['required'] && fprice.touched">Please enter product price</div>
+                    <div *ngIf="fprice.errors?.['minlength'] && fprice.touched">Please enter atleast 4 digits</div>
+                    FPrice:<input type = "number" name = "fprice" #fprice="ngModel" ngModel [(ngModel)]="foodUpdate.fprice" required minlength="4" maxlength="30"><br><br>
+                  
+                    <div *ngIf="fdesc.errors?.['required'] && fdesc.touched">Please enter product Description</div>
+                    <div *ngIf="fdesc.errors?.['minlength'] && fdesc.touched">Please enter atleast 5 characters</div>
+                    Fdesc:<input type = "text" name = "fdesc" #fdesc="ngModel" ngModel [(ngModel)]="foodUpdate.fdesc" required minlength="5" maxlength="125" size="50"><br><br>
+                  
+                    <div *ngIf="fcid.errors?.['required'] && fcid.touched">Please enter product Category ID</div>
+                    <div *ngIf="fcid.errors?.['minlength'] && fcid.touched">Please enter atleast 1 digit</div>
+                    Fcid:<input type = "number" name = "fcid" #fcid="ngModel" ngModel [(ngModel)]="foodUpdate.fcid" required minlength="1" maxlength="5"><br><br>
+                   
+                   Fimg:<input type = "text"  name = "fimg" #fimg="ngModel" ngModel [(ngModel)]="foodUpdate.fimg" required minlength="5" maxlength="125" size="50"><br>
+                   <button class="btn btn-primary">Submit</button>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                      <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+                    </div>
+       </div>
+        </div>
+</div>
+  <br>
+  
+
+
+
+     
+  
+
+

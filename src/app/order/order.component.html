@@ -1,0 +1,21 @@
+<div class ="container4">
+    <h2>ORDER DETAILS</h2><br>
+  <table class="table table-stripped table-bordered table-hover"style="font-size:17px">
+    <thead>
+    <tr class = "bg-primary" height="40px" text-align= "center">
+      <th>Oid</th>
+      <th>Fid</th>
+      <th>Uid</th>
+   
+    </tr>
+  </thead>
+    <tbody>
+    <tr *ngFor="let o of Orders">
+        <td>{{o.oid}}</td>
+      <td>{{o.fid }}</td>
+      <td>{{o.uid}}</td>
+      
+    </tr>
+  </tbody>
+</table>
+</div> 

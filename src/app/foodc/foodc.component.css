@@ -1,0 +1,46 @@
+.container2{
+	position: relative;
+	margin-top: 80px;
+	margin-left: 10px;
+	width: 450px;
+	height: auto;
+	background: #dedede;
+	border-radius: 20px;
+}
+.container2 form{
+    padding:60px 40px;
+}
+
+.container2 input{
+	height: 40px;
+	width: 350px;
+	padding: 0 5px;
+	font-size: 18px;
+	outline: none;
+   
+	border: 1px solid silver;
+}
+.container2 button{
+	margin: 45px 0 30px 0;
+	height: 40px;
+	width: 350px;
+	font-size: 20px;
+	color: white;
+	outline: none;
+	cursor: pointer;
+	font-weight: bold;
+	
+	border-radius: 3px;
+	border: 1px solid white;
+	transition: .5s;
+}
+
+  td {
+    text-align: left;
+  }
+  tbody{
+    background-color:rgb(249, 226, 230);
+  }
+  .btn{
+	padding: 10px 22px;
+  }

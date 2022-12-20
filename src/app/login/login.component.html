@@ -1,0 +1,45 @@
+ <!-- <div class="img">
+    <img src="./assets/images/virat.jpg">
+ </div> -->
+ <!-- <div id ="img">
+    <div class ="container" style="font-size: 17px;">
+        <form [formGroup]="loginForm" #loginForm='ngModel' (ngSubmit)=login(loginForm.value) nonvalidate>
+        
+            <div *ngIf ="name.errors?.['required'] && name.touched">pls enter the name</div>
+            <div *ngIf ="name.errors?.['minlength'] && name.touched" class="form-group">pls enter atleast 2 character
+             UserName<br><input type ="text" ngModel formControlName = "username"  name ="name" #name='ngModel' class="form-control" required minlength="2" maxlength="6"><br><br>
+            </div>
+
+            <div *ngIf ="pwd.errors?.['required'] && pwd.touched">pls enter the pwd</div>
+            <div *ngIf ="pwd.errors?.['minlength'] && pwd.touched" class="form-group">pls enter atleast 3 characters
+               Password<br> <input type ="password" ngModel name ="pwd" #pwd='ngModel' formControlName ="password"  class="form-control" required minlength="3" maxlength="5"><br>
+              </div>
+
+               <div class="text-center">
+            <button type="submit"  class="btn">Login</button>
+           </div>
+        </form>
+    </div> 
+   </div>  
+  -->
+
+ <div id ="img">
+<div class="container">
+   <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
+   
+       <div class="form-group">
+       <h2>Username</h2> <input type="text" formControlName="username" class="form-control"name="username">{{username}}<br><br>
+       </div>
+       <div class="form-group">
+      <h2>Password</h2> <input type="password" formControlName="password" name="password"  class="form-control">{{password}}<br><br>
+       </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button><br> 
+       <a  style="text-decoration:none ;cursor: pointer; color:blue;" routerLink="/register">New User? click to Register</a>
+   </form>
+   </div>
+ </div>   
+
+
+
+
